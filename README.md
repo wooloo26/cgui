@@ -1,58 +1,91 @@
 # CGUI
 
-## Prerequisites
+**A lightweight, immediate-mode GUI library for C17**
 
-### Windows
+CGUI is a single-header, zero-dependency (frontend) immediate-mode GUI library written in pure C17. It provides an intuitive API for building interactive user interfaces with minimal overhead, making it ideal for tools, game development, embedded systems, and prototyping.
 
-- CMake 3.10 or higher
-- Visual Studio 2019 or later (with C++ build tools)
-- GLFW3 library
+## Roadmap
 
-Install GLFW via vcpkg:
+- [ ] Text input widget
+- [ ] Checkbox and radio button widgets
+- [ ] Scrollable containers
+- [ ] Font rendering system (stb_truetype integration)
+- [ ] Drag-and-drop support
+- [ ] Window/panel system
+- [ ] Themes and styling API
+- [ ] Vulkan/Metal backend examples
 
-```bash
-vcpkg install glfw3:x64-windows
+## Quick Start
+
+### Prerequisites
+
+- **CMake** 3.10 or higher
+- **vcpkg** (for dependency management)
+- **C17 compiler** (Visual Studio 2019+, GCC 8+, Clang 6+)
+
+#### Windows (PowerShell)
+
+```powershell
+cmake --preset=default
+cmake --build build
 ```
 
-### macOS
+### Running the Demo
 
 ```bash
-brew install cmake glfw
+./build/cgui_demo          # Linux/macOS
+.\build\cgui_demo.exe      # Windows
 ```
 
-### Linux (Ubuntu/Debian)
+## Integration into Your Project
 
-```bash
-sudo apt update
-sudo apt install cmake build-essential libglfw3-dev libgl1-mesa-dev
+CGUI follows the single-header library pattern:
+
+### 1. Copy Headers
+
+```
+your_project/
+  include/
+    cgui.h              # Core GUI library
+    cgui_backend_gl.h   # OpenGL 2.1 backend
 ```
 
-## Usage in Your Project
+### 2. Define Implementation (in ONE .c file)
 
-CGUI is a single-header library. To use it:
+```c
+#define CGUI_IMPLEMENTATION
+#include "cgui.h"
 
-1. **Copy the headers to your project:**
+#define CGUI_BACKEND_GL_IMPLEMENTATION
+#include "cgui_backend_gl.h"
+```
 
-   - `cgui.h` - Main GUI library
-   - `cgui_backend_gl.h` - OpenGL backend (optional)
+### 3. Include in Other Files
 
-2. **In ONE .c file, define the implementation:**
+```c
+#include "cgui.h"
+#include "cgui_backend_gl.h"
+```
 
-   ```c
-   #define CGUI_IMPLEMENTATION
-   #include "cgui.h"
+### 4. Link Dependencies
 
-   #define CGUI_BACKEND_GL_IMPLEMENTATION
-   #include "cgui_backend_gl.h"
-   ```
+- **GLFW3**: Window management and input
+- **OpenGL**: Graphics rendering (2.1+ compatible)
 
-3. **In other files, just include normally:**
+**CMake example:**
 
-   ```c
-   #include "cgui.h"
-   #include "cgui_backend_gl.h"
-   ```
+```cmake
+find_package(glfw3 CONFIG REQUIRED)
+find_package(OpenGL REQUIRED)
+target_link_libraries(your_app glfw OpenGL::GL)
+```
 
-4. **Link against GLFW and OpenGL:**
-   - GLFW: `-lglfw` or `-lglfw3`
-   - OpenGL: `-lGL` (Linux), `-framework OpenGL` (macOS), `-lopengl32` (Windows)
+**Compiler flags:**
+
+- Linux: `-lglfw -lGL -lm`
+- macOS: `-lglfw -framework OpenGL -framework Cocoa -framework IOKit`
+- Windows: `glfw3.lib opengl32.lib` (MSVC) or `-lglfw3 -lopengl32` (MinGW)
+
+## License
+
+MIT License - see source files for details.
