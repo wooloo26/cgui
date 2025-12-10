@@ -1,41 +1,7 @@
-# Build directories
+**/.DS_Store
+compile_commands.json
 build/
-cmake-build-*/
-out/
-
-# Compiled binaries
-*.exe
-*.out
-*.app
-cgui_demo
-
-# Object files
-*.o
-*.obj
-*.a
-*.lib
-*.so
-*.dylib
-*.dll
-
-# CMake
-CMakeCache.txt
-CMakeFiles/
-cmake_install.cmake
-install_manifest.txt
-CTestTestfile.cmake
-_deps/
-
-# IDE specific
-.vs/
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Dependency managers
-vcpkg_installed/
+.cache/
+.clangd
 architecture.md
 
