@@ -4,17 +4,6 @@
 
 CGUI is a single-header, zero-dependency (frontend) immediate-mode GUI library written in pure C17. It provides an intuitive API for building interactive user interfaces with minimal overhead, making it ideal for tools, game development, embedded systems, and prototyping.
 
-## Roadmap
-
-- [ ] Text input widget
-- [ ] Checkbox and radio button widgets
-- [ ] Scrollable containers
-- [ ] Font rendering system (stb_truetype integration)
-- [ ] Drag-and-drop support
-- [ ] Window/panel system
-- [ ] Themes and styling API
-- [ ] Vulkan/Metal backend examples
-
 ## Quick Start
 
 ### Prerequisites
